@@ -1,5 +1,8 @@
 #![no_std]
 
+//! TODO handle errors
+
+
 /// Trait representing the interface to the hardware.
 /// Intended to abstract the various buses (SPI, MPU 8/9/16/18-bit) from the
 /// Controller code.
@@ -21,52 +24,52 @@ pub enum TearingEffect {
 
 // TODO: Implement access "methods" on these types.
 
-#[derive(Copy, Clone, Default)]
+#[derive(Copy, Clone, Default, Debug)]
 pub struct DisplayIdentification {
 	raw: [u8; 3],
 }
 
-#[derive(Copy, Clone, Default)]
+#[derive(Copy, Clone, Default, Debug)]
 pub struct DisplayStatus {
 	raw: [u8; 4],
 }
 
-#[derive(Copy, Clone, Default)]
+#[derive(Copy, Clone, Default, Debug)]
 pub struct DisplayPowerMode {
 	raw: [u8; 1],
 }
 
-#[derive(Copy, Clone, Default)]
+#[derive(Copy, Clone, Default, Debug)]
 pub struct MADCtl {
 	raw: [u8; 1],
 }
 
-#[derive(Copy, Clone, Default)]
+#[derive(Copy, Clone, Default, Debug)]
 pub struct PixelFormat {
 	raw: [u8; 1],
 }
 
-#[derive(Copy, Clone, Default)]
+#[derive(Copy, Clone, Default, Debug)]
 pub struct ImageFormat {
 	raw: [u8; 1],
 }
 
-#[derive(Copy, Clone, Default)]
+#[derive(Copy, Clone, Default, Debug)]
 pub struct SignalMode {
 	raw: [u8; 1],
 }
 
-#[derive(Copy, Clone, Default)]
+#[derive(Copy, Clone, Default, Debug)]
 pub struct SelfDiagnosticResult {
 	raw: [u8; 1],
 }
 
-#[derive(Copy, Clone, Default)]
+#[derive(Copy, Clone, Default, Debug)]
 pub struct MemoryAccessControl {
 	raw: [u8; 1],
 }
 
-#[derive(Copy, Clone, Default)]
+#[derive(Copy, Clone, Default, Debug)]
 pub struct CtrlDisplay {
 	raw: [u8; 1],
 }
@@ -91,7 +94,7 @@ impl<T: Interface> Controller<T>
 		self.iface.write_parameters(command, &[]);
 	}
 
-	fn write_parameters(&mut self, command: u8, parameters: &[u8]) {
+	pub fn write_parameters(&mut self, command: u8, parameters: &[u8]) {
 		self.iface.write_parameters(command, parameters);
 	}
 
