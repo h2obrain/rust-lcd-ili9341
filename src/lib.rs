@@ -13,10 +13,10 @@ pub trait Interface {
     
 	fn write_parameters(&mut self, command: u8, data: &[u8]) -> Result<(), Self::Error>;
     //fn write_memory<I>(&mut self, iterable: I) where I: IntoIterator<Item=u32>;
-	fn write_memory(&mut self, data: &[u8]) -> Result<(), Self::Error>;
+//	fn write_memory(&mut self, data: &[u8]) -> Result<(), Self::Error>;
 	fn read_parameters(&mut self, command: u8, data: &mut [u8]) -> Result<(), Self::Error>;
     //fn read_memory(&mut self, data: &mut [u32]) -> Result<(), Self::Error>;
-    fn read_memory(&mut self, data: &mut [u8]) -> Result<(), Self::Error>;
+//    fn read_memory(&mut self, data: &mut [u8]) -> Result<(), Self::Error>;
 }
 
 pub enum TearingEffect {
@@ -281,9 +281,9 @@ impl<T: Interface> Controller<T>
 	//{
 	//	self.iface.write_memory(iterable);
 	//}
-    pub fn write_memory(&mut self, data: &[u8]) -> Result<(), T::Error> {
-        self.iface.write_memory(data)
-    }
+//    pub fn write_memory(&mut self, data: &[u8]) -> Result<(), T::Error> {
+//        self.iface.write_memory(data)
+//    }
     
 
 	pub fn read_memory_continue(&mut self) -> Result<(), T::Error> {
@@ -291,9 +291,9 @@ impl<T: Interface> Controller<T>
 	}
 
     //pub fn read_memory(&mut self, data: &mut [u32]) -> Result<(), T::Error> {
-	pub fn read_memory(&mut self, data: &mut [u8]) -> Result<(), T::Error> {
-		self.iface.read_memory(data)
-	}
+//	pub fn read_memory(&mut self, data: &mut [u8]) -> Result<(), T::Error> {
+//		self.iface.read_memory(data)
+//	}
 	
 	pub fn set_tear_scanline(&mut self, sts: u16) -> Result<(), T::Error> {
 		self.write_parameters(0x44, &[
